@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "sourdough-tracker"
+    }
+  },
+  "defaultProject": "sourdough-tracker",
+  "cli": {
+    "analytics": "51674cb2-d4e2-43ad-8ef4-801c76099454"
+  }
 }

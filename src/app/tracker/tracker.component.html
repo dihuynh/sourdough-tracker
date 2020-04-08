@@ -1,1 +1,5 @@
-<p>tracker works!</p>
+<countdown #cd [config]="{leftTime: 30, demand: true}"></countdown>
+<div>
+  <button (click)="startTimer()">Start</button>
+  <button (click)="stopTimer()">Stop</button>
+</div>

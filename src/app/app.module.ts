@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CountdownModule, CountdownTimer } from 'ngx-countdown';
 
 import { AppComponent } from './app.component';
 import { TrackerComponent } from './tracker/tracker.component';
@@ -10,7 +11,8 @@ import { TrackerComponent } from './tracker/tracker.component';
     TrackerComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    CountdownModule
   ],
   providers: [],
   bootstrap: [TrackerComponent]

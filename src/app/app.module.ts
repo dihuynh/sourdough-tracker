@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CountdownModule, CountdownTimer } from 'ngx-countdown';
@@ -12,7 +13,8 @@ import { TrackerComponent } from './tracker/tracker.component';
   ],
   imports: [
     BrowserModule,
-    CountdownModule
+    CountdownModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [TrackerComponent]

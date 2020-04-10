@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CountdownComponent } from 'ngx-countdown';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { CountdownComponent, CountdownConfig, CountdownEvent } from 'ngx-countdown';
 
 @Component({
   selector: 'app-tracker',
@@ -7,20 +8,30 @@ import { CountdownComponent } from 'ngx-countdown';
   styleUrls: ['./tracker.component.sass']
 })
 export class TrackerComponent implements OnInit {
+  private DEFAULT_FOLD_TIME = 30;
 
-  @ViewChild('cd', { static: false })
+  @ViewChild('autolyseTimer', { static: false })
   private countdown: CountdownComponent;
 
-  constructor() { }
+  public formGroup: FormGroup;
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.formGroup = this.fb.group({
+      autolyse: [],
+      levainMix: [],
+      saltMix: [],
+      folds: this.fb.array([])
+    });
   }
 
-  public startTimer() {
-    this.countdown.begin();
+  public get folds(): FormArray {
+    return this.formGroup.get('folds') as FormArray;
   }
 
-  public stopTimer() {
-    this.countdown.stop();
+  public addFold() {
+    const foldIndex = this.folds.controls.length;
+    this.folds.insert(foldIndex, new FormControl(this.DEFAULT_FOLD_TIME, []));
   }
 }

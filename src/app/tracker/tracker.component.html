@@ -1,5 +1,20 @@
-<countdown #cd [config]="{leftTime: 30, demand: true}"></countdown>
-<div>
-  <button (click)="startTimer()">Start</button>
-  <button (click)="stopTimer()">Stop</button>
+<div [formGroup]="formGroup">
+  {{ formGroup.value | json }}
+
+  <p>Autolyse</p>
+  <input formControlName="autolyse"/> minutes
+
+  <p>Levain mix</p>
+  <input formControlName="levainMix"/> minutes
+
+  <p>Salt mix</p>
+  <input formControlName="saltMix"/> minutes
+
+  <p>Folds</p>
+  <div formArrayName="folds">
+    <div *ngFor="let fold of folds.controls, index as i">
+      <input [formControlName]="i"/> minutes
+    </div>
+    <button (click)="addFold()">Add another fold</button>
+  </div>
 </div>

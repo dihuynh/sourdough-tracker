@@ -12,7 +12,7 @@
 
   <p>Folds</p>
   <div formArrayName="folds">
-    <div *ngFor="let fold of folds.controls, index as i">
+    <div *ngFor="let fold of foldsFormGroup.controls, index as i">
       <input [formControlName]="i"/> minutes
     </div>
     <button (click)="addFold()">Add another fold</button>
@@ -23,4 +23,8 @@
     [buttonClickedText]="buttonClickedText"
     [buttonText]="buttonText"
   ></copy-to-clipboard>
+
+  <div>
+    <recipe-timer [numMinutes]="timerValue"></recipe-timer>
+  </div>
 </div>

@@ -16,6 +16,7 @@ export class TrackerComponent implements OnInit {
   public formGroup: FormGroup;
   public buttonClickedText = 'Copied!';
   public buttonText = 'Copy';
+  public timerValue: any;
 
   constructor(private fb: FormBuilder) {
   }
@@ -27,15 +28,35 @@ export class TrackerComponent implements OnInit {
       saltMix: [],
       folds: this.fb.array([])
     });
+    this.subscribeToValueChangesAndSetTimerValue();
   }
 
-  public get folds(): FormArray {
+  private subscribeToValueChangesAndSetTimerValue() {
+    this.formGroup.get('autolyse').valueChanges.subscribe((minuteValue: number) => {
+      this.timerValue = minuteValue;
+    });
+    this.formGroup.get('levainMix').valueChanges.subscribe((minuteValue: number) => {
+      this.timerValue = minuteValue;
+    });
+    this.formGroup.get('saltMix').valueChanges.subscribe((minuteValue: number) => {
+      this.timerValue = minuteValue;
+    });
+    this.foldsFormGroup.valueChanges.subscribe((formGroupValue) => {
+      Object.keys(this.foldsFormGroup.controls).forEach(control => {
+        if (this.foldsFormGroup.get(control).dirty) {
+          this.timerValue = this.foldsFormGroup.get(control).value;
+        }
+      });
+    });
+  }
+
+  public get foldsFormGroup(): FormArray {
     return this.formGroup.get('folds') as FormArray;
   }
 
   public addFold() {
-    const foldIndex = this.folds.controls.length;
-    this.folds.insert(foldIndex, new FormControl(this.DEFAULT_FOLD_TIME, []));
+    const foldIndex = this.foldsFormGroup.controls.length;
+    this.foldsFormGroup.insert(foldIndex, new FormControl(null, []));
   }
 
   public get recipe(): string {

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { CountdownComponent, CountdownConfig, CountdownEvent } from 'ngx-countdown';
+import { CountdownComponent } from 'ngx-countdown';
 
 @Component({
   selector: 'app-tracker',
@@ -14,8 +14,11 @@ export class TrackerComponent implements OnInit {
   private countdown: CountdownComponent;
 
   public formGroup: FormGroup;
+  public buttonClickedText = 'Copied!';
+  public buttonText = 'Copy';
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {
+  }
 
   ngOnInit(): void {
     this.formGroup = this.fb.group({
@@ -33,5 +36,9 @@ export class TrackerComponent implements OnInit {
   public addFold() {
     const foldIndex = this.folds.controls.length;
     this.folds.insert(foldIndex, new FormControl(this.DEFAULT_FOLD_TIME, []));
+  }
+
+  public get recipe(): string {
+    return JSON.stringify(this.formGroup.value);
   }
 }

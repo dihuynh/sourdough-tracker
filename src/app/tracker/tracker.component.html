@@ -17,4 +17,10 @@
     </div>
     <button (click)="addFold()">Add another fold</button>
   </div>
+
+  <copy-to-clipboard
+    [value]="recipe"
+    [buttonClickedText]="buttonClickedText"
+    [buttonText]="buttonText"
+  ></copy-to-clipboard>
 </div>

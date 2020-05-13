@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { CopyToClipboardComponent } from './tracker/copy-to-clipboard/copy-to-clipboard.component';
 import { TrackerComponent } from './tracker/tracker.component';
 import { RecipeTimerComponent } from './tracker/recipe-timer/recipe-timer.component';
+import { RecipeConverterComponent } from './recipe-converter/recipe-converter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TrackerComponent,
     CopyToClipboardComponent,
-    RecipeTimerComponent
+    RecipeTimerComponent,
+    RecipeConverterComponent
   ],
   imports: [
     BrowserModule,

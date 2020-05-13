@@ -6,9 +6,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CdTimerModule } from 'angular-cd-timer';
 import { CountdownModule } from 'ngx-countdown';
 import { AppComponent } from './app.component';
-import { CopyToClipboardComponent } from './copy-to-clipboard/copy-to-clipboard.component';
+import { CopyToClipboardComponent } from './tracker/copy-to-clipboard/copy-to-clipboard.component';
 import { TrackerComponent } from './tracker/tracker.component';
-import { RecipeTimerComponent } from './recipe-timer/recipe-timer.component';
+import { RecipeTimerComponent } from './tracker/recipe-timer/recipe-timer.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import { RecipeTimerComponent } from './recipe-timer/recipe-timer.component';
     CdTimerModule
   ],
   providers: [],
-  bootstrap: [TrackerComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

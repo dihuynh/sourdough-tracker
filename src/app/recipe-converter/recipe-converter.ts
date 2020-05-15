@@ -18,7 +18,7 @@ export interface Recipe {
 
 export class RecipeConverter {
   public convert(rawRecipe: string): Recipe {
-    const flourRegEx = new RegExp('(\\d+)\\s*C\\s*flour');
+    const flourRegEx = new RegExp('(\\d+\\/?\\d*)\\s*C\\s*flour');
     const groups: RegExpExecArray = flourRegEx.exec(rawRecipe);
     const quantity: string = groups[1];
     return {

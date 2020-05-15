@@ -4,7 +4,8 @@ export enum Measurement {
 }
 
 export enum IngredientType {
-  FLOUR = "FLOUR"
+  FLOUR = "FLOUR",
+  SUGAR = "SUGAR"
 }
 
 export interface Ingredient {
@@ -18,34 +19,33 @@ export interface Recipe {
 }
 
 export class RecipeConverter {
+
+  constructor(private ingredientType: IngredientType,
+              private cupToGramConversionFactor: number) {
+  }
+
   public convert(rawRecipe: string): Recipe {
-    const flourRegEx = new RegExp('(\\d\\s)?((\\d+)\\/(\\d*))?\\s*C\\s*flour');
-    const groups: RegExpExecArray = flourRegEx.exec(rawRecipe);
-    const quantity: string = groups[1];
-    const flourIngredient: Ingredient = {
-      quantity: quantity,
-      measurement: Measurement.CUP,
-      type: IngredientType.FLOUR,
-    };
+    const ingredientRegEx = new RegExp('(\\d\\s)?((\\d+)\\/(\\d*))?\\s*C\\s*' + this.ingredientType.toString().toLowerCase());
+    const groups: RegExpExecArray = ingredientRegEx.exec(rawRecipe);
     return {
-      ingredients: [this.convertCupToGrams(groups, flourIngredient)]
+      ingredients: [this.convertCupToGrams(groups)]
     };
   }
 
-  private convertCupToGrams(groups: RegExpExecArray, flourIngredient: Ingredient): Ingredient {
-    let wholeCups: number = getValue(groups[1]);
-    let fractionNumerator: number = getValue(groups[3]);
+  private convertCupToGrams(groups: RegExpExecArray): Ingredient {
+    let wholeCups: number = this.getValue(groups[1]);
+    let fractionNumerator: number = this.getValue(groups[3]);
     let fractionDenom: number = groups[4] ? Number(groups[4]) : 1;
-    let quantityInGrams: number = 120 * (wholeCups + fractionNumerator/fractionDenom);
+    let quantityInGrams: number = this.cupToGramConversionFactor * (wholeCups + fractionNumerator / fractionDenom);
 
     return {
       quantity: quantityInGrams.toString(),
       measurement: Measurement.GRAM,
-      type: IngredientType.FLOUR,
+      type: this.ingredientType
     }
   }
-}
-function getValue(value: string): number {
-  return value ? Number(value) : 0;
-}
 
+  public getValue(value: string): number {
+    return value ? Number(value) : 0;
+  }
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl} from "@angular/forms";
 
 @Component({
@@ -10,13 +10,14 @@ export class RecipeConverterComponent implements OnInit {
   public rawRecipe: FormControl = new FormControl();
   public convertedRecipe: string = '';
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
     this.rawRecipe.valueChanges.subscribe((value: string) => this.convert(value));
   }
 
   private convert(rawRecipe: string) {
-      this.convertedRecipe = rawRecipe + ' converted';
+    this.convertedRecipe = rawRecipe + ' converted';
   }
 }

@@ -14,9 +14,10 @@
         </div>
         <div class="col-sm" >
             <p>Converted recipe</p>
+            {{ convertedRecipe | json }}
             <div>
                 <textarea
-                        [value]="convertedRecipe"
+                        [value]="convertedRecipe | json"
                         rows="20"
                         cols="40"
                 ></textarea>

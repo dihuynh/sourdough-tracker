@@ -33,11 +33,16 @@ export class RecipeConverter {
   }
 
   private findConverter(line: string): IngredientConverter {
-    if (line.includes('flour')) {
-      return new IngredientConverter(IngredientType.FLOUR, 120);
-    }
-    if (line.includes('sugar')) {
-      return new IngredientConverter(IngredientType.SUGAR, 198);
+    let converter: IngredientConverter;
+    Array.from(ingredientConverterMap.keys()).forEach(key => {
+      if(line.includes(key)){
+        converter = ingredientConverterMap.get(key);
+      }
+    });
+    if (converter) {
+      return converter
+    } else {
+      throw new Error('No converter found for line: ' + line);
     }
   }
 }

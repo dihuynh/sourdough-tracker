@@ -18,6 +18,8 @@ describe('should convert a recipe', () => {
       ['1 C flour', '120'],
       ['1 1/2 c flour', '180'],
       ['1 1/2 c whole wheat flour', '180'],
+      ['1 1/2 cup flour', '180'],
+      ['1 1/2 cups flour', '180'],
       ['1/2 C all purpose flour', '60']
     ]);
   })

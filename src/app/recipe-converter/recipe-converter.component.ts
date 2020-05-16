@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl} from "@angular/forms";
-import { RecipeConverter, Recipe, IngredientType } from './recipe-converter';
+import { IngredientConverter, Recipe, IngredientType, RecipeConverter } from './recipe-converter';
 
 @Component({
   selector: 'app-recipe-converter',
@@ -19,7 +19,7 @@ export class RecipeConverterComponent implements OnInit {
   }
 
   private convert(rawRecipe: string) {
-    const converter = new RecipeConverter(IngredientType.FLOUR, 120);
+    const converter = new RecipeConverter();
     this.convertedRecipe = converter.convert(rawRecipe);
   }
 }

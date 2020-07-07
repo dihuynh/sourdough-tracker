@@ -29,7 +29,7 @@
     "angular-cd-timer": "1.0.0",
     "install": "0.13.0",
     "ngx-countdown": "9.0.0",
-    "npm": "6.14.4",
+    "npm": "6.14.6",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
